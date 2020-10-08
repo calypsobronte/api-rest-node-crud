@@ -97,9 +97,6 @@ export default {
             nameTask: "",
         };
     },
-    created(){
-      this.mountDataServer();
-    },
     methods: {
         getTodoList(){
             getTodoListApi().then(todoList => {
@@ -125,8 +122,11 @@ export default {
             this.getTodoList();
         }
     },
-    //beforeMount() {
-      //this.getTodoList();
-    //}
+    created(){
+      this.getTodoList();
+    },
+    beforeMount() {
+      this.getTodoList();
+    }
 };
 </script>
