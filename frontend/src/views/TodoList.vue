@@ -97,6 +97,9 @@ export default {
             nameTask: "",
         };
     },
+    created(){
+      this.mountDataServer();
+    }
     methods: {
         getTodoList(){
             getTodoListApi().then(todoList => {
@@ -115,7 +118,7 @@ export default {
           if (!this.nameTask == "")
             createTodoListApi({nameTask: this.nameTask});
             this.nameTask = "";
-	    this.getTodoList();
+            this.getTodoList();
         },
         deleteTodoList(item){
             deleteTodoListApi(item);
@@ -124,9 +127,6 @@ export default {
     },
     beforeMount() {
       this.getTodoList();
-    },
-    created(){
-      this.mountDataServer();
     }
 };
 </script>
