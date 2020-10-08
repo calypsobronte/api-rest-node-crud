@@ -40,18 +40,22 @@
 
 	<!-- data -->
         <v-card-text class="px-0">
-          <v-data-table hide-default-footer dense>
-            <template>
+          <v-data-table :items="apiTodoList" hide-default-footer dense>
+            <template v-slot:item="{item}">
               <tr>
                 <td>
-                  <v-checkbox></v-checkbox>
+                  <v-checkbox v-model="item.isComplete" @click="changeTodoList(item)"></v-checkbox>
                 </td>
                 <td>
-                  TASK NAME
+                  <div v-if="item.isComplete" class="text-decoration-line-through">
+                    {{ item.name }}
+                  </div>
+                  <div v-else>
+                    {{ item.name }}
+                  </div>
                 </td>
                 <td>
-                  <v-icon color="error">mdi-delete</v-icon
-                  >
+                  <v-icon @click="deleteTodoList(item._id)" color="error">mdi-delete</v-icon>
                 </td>
               </tr>
             </template>
@@ -82,12 +86,34 @@
 </template>
 
 <script>
+import { getTodoListApi, updateTodoListApi, deleteTodoListApi } from '../services/todoList/index.js';
 
 export default {
-  name: 'Task',
+    name: 'Task',
 
-  components: {
-    //,
-  },
+    data() {
+        return {
+            apiTodoList: [],
+        }
+    },
+    methods: {
+        getTodoList(){
+            getTodoListApi().then(todoList => {
+                this.apiTodoList = todoList;
+                console.log(this.apiTodoList);
+            })
+        },
+        changeTodoList(item){
+            updateTodoListApi({_id: item._id, isComplete: item.isComplete});
+            console.log(item);
+        },
+	deleteTodoList(id){
+	    //deleteTodoListApi();
+	    console.log(id);
+	}
+    },
+    beforeMount() {
+        this.getTodoList();
+    }
 };
 </script>
