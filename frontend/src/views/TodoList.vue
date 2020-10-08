@@ -99,7 +99,7 @@ export default {
     },
     created(){
       this.mountDataServer();
-    }
+    },
     methods: {
         getTodoList(){
             getTodoListApi().then(todoList => {
