@@ -37,6 +37,45 @@
           </v-row>
 
         </v-card-title>
+
+	<!-- data -->
+        <v-card-text class="px-0">
+          <v-data-table hide-default-footer dense>
+            <template>
+              <tr>
+                <td>
+                  <v-checkbox></v-checkbox>
+                </td>
+                <td>
+                  TASK NAME
+                </td>
+                <td>
+                  <v-icon color="error">mdi-delete</v-icon
+                  >
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+
+          <!-- new task  -->
+          <v-row>
+            <v-col sm="8" class="py-0 pr-0">
+              <v-text-field label="Agregar Tarea" solo dense></v-text-field>
+            </v-col>
+
+            <v-col sm="4" class="py-0 pl-0 mb-1">
+              <v-btn tile color="secondary" block class="text-capitalize">
+                <v-icon left>
+                  mdi-plus
+                </v-icon>
+                Agregar
+              </v-btn>
+            </v-col>
+          </v-row>
+
+          <p>Tareas : 0</p>
+        </v-card-text>
+
       </v-card>
     </v-row>
   </v-container>
