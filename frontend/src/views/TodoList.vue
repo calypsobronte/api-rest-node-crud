@@ -64,11 +64,11 @@
           <!-- new task  -->
           <v-row>
             <v-col sm="8" class="py-0 pr-0">
-              <v-text-field label="Agregar Tarea" solo dense></v-text-field>
+              <v-text-field v-model="nameTask" label="Agregar Tarea" solo dense></v-text-field>
             </v-col>
 
             <v-col sm="4" class="py-0 pl-0 mb-1">
-              <v-btn tile color="secondary" block class="text-capitalize">
+              <v-btn @click="createTodoList" tile color="secondary" block class="text-capitalize">
                 <v-icon left>
                   mdi-plus
                 </v-icon>
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { getTodoListApi, updateTodoListApi, deleteTodoListApi } from '../services/todoList/index.js';
+import { getTodoListApi, updateTodoListApi, deleteTodoListApi, createTodoListApi } from '../services/todoList/index.js';
 
 export default {
     name: 'Task',
@@ -94,7 +94,8 @@ export default {
     data() {
         return {
             apiTodoList: [],
-        }
+            nameTask: "",
+        };
     },
     methods: {
         getTodoList(){
@@ -110,10 +111,15 @@ export default {
             updateTodoListApi({_id: item._id, isComplete: item.isComplete});
             console.log(item);
         },
+        createTodoList(){
+          if (!this.nameTask)
+            createTodoListApi({nameTask: this.nameTask});
+            this.nameTask = "";
+        },
         deleteTodoList(item){
             deleteTodoListApi(item);
             this.getTodoList();
-	    }
+        }
     },
     beforeMount() {
       this.getTodoList();
