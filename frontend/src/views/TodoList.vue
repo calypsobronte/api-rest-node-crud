@@ -112,9 +112,10 @@ export default {
             console.log(item);
         },
         createTodoList(){
-          if (!this.nameTask)
+          if (!this.nameTask == "")
             createTodoListApi({nameTask: this.nameTask});
             this.nameTask = "";
+	    this.getTodoList();
         },
         deleteTodoList(item){
             deleteTodoListApi(item);
