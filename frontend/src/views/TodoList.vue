@@ -125,8 +125,8 @@ export default {
             this.getTodoList();
         }
     },
-    beforeMount() {
-      this.getTodoList();
-    }
+    //beforeMount() {
+      //this.getTodoList();
+    //}
 };
 </script>
