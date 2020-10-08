@@ -48,10 +48,10 @@
                 </td>
                 <td>
                   <div v-if="item.isComplete" class="text-decoration-line-through">
-                    {{ item.name }}
+                    {{ item.nameTask }}
                   </div>
                   <div v-else>
-                    {{ item.name }}
+                    {{ item.nameTask }}
                   </div>
                 </td>
                 <td>
@@ -107,13 +107,14 @@ export default {
             updateTodoListApi({_id: item._id, isComplete: item.isComplete});
             console.log(item);
         },
-	deleteTodoList(id){
-	    //deleteTodoListApi();
-	    console.log(id);
+	deleteTodoList(item){
+	    deleteTodoListApi(item);
+	    this.getTodoList();
 	}
-    },
-    beforeMount() {
+     },
+     beforeMount() {
         this.getTodoList();
-    }
+     }
+
 };
 </script>
