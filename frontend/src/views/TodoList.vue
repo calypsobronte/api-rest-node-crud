@@ -103,18 +103,23 @@ export default {
                 console.log(this.apiTodoList);
             })
         },
+        mountDataServer(){
+          this.getTodoList();
+        },
         changeTodoList(item){
             updateTodoListApi({_id: item._id, isComplete: item.isComplete});
             console.log(item);
         },
-	deleteTodoList(item){
-	    deleteTodoListApi(item);
-	    this.getTodoList();
-	}
-     },
-     beforeMount() {
-        this.getTodoList();
-     }
-
+        deleteTodoList(item){
+            deleteTodoListApi(item);
+            this.getTodoList();
+	    }
+    },
+    beforeMount() {
+      this.getTodoList();
+    },
+    created(){
+      this.mountDataServer();
+    }
 };
 </script>
