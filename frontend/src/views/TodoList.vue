@@ -125,6 +125,25 @@ export default {
     },
     beforeMount() {
       this.getTodoList();
-    }
+    },    
+    state: {
+      todoList: [],
+      response: null,
+    },
+    mutations: {
+      setTodolist(state, payload) {
+        state.todoList = payload;
+      },
+      setError(state, payload) {
+        state.error = payload;
+      },
+      setResponse(state, payload) {
+        state.response = payload;
+      },
+    },
+    getters: {
+      getDataTodoList: (state) => state.todoList,
+      getLoading: (state) => state.loading,
+    },
 };
 </script>
